@@ -1,0 +1,129 @@
+<!-- EVENTS#NEW MIDDLE-->
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-2" id="left_side">
+      <ul class="list-group">
+        <li class="list-group-item"><%= link_to "Dodaj wydarzenie", "#", class: 'navigationlink' %></li>
+        <li class="list-group-item"><%= link_to "Twoje wydarzenia", "/events?direction=desc&sort=start_date", class: 'navigationlink' %></li>
+        <li class="list-group-item"><%= link_to "Twój kalendarz", "#", class: 'navigationlink' %></li>
+        <li class="list-group-item"><%= link_to "Twój profil", "#", class: 'navigationlink' %></li>
+      </ul>
+    </div>
+
+    <div class="col-sm-6 col-sm-offset-2" id="center_side">
+      <div class="event_list_title">
+        <h3 class="lead">Dodaj wydarzenie</h3>
+      </div>
+      <div class="newform">
+        <%= simple_form_for @event do |f| %>
+          <%= f.input :name, label: 'nazwa' %><br />
+          <%= f.input :description, label: 'opis' %><br />
+          <table>
+            <tr>
+              <td class="dateinput"><%= f.input :start_date, as: :string, input_html: { class: "datepicker" }, label: 'początek' %></td>
+              <td class="timeinput"><%= f.input :start_time, label: false %></td>
+              <td class="dateinput"><%= f.input :end_date, as: :string, input_html: { class: "datepicker2" }, label: 'koniec' %></td>
+              <td class="timeinput"><%= f.input :end_time, label: false %></td>
+            </tr>
+          </table>
+          <br />
+          <%= f.input :address, label: 'adres (np. Złota 44) lub lokalizacja (np. Pałac Kultury i Nauki)' %><br />
+          <%= f.input :city, label: 'miasto' %><br />
+          <%= link_to "Pokaż na mapie", new_event_path, class: "btn btn-default btn-xs" %>
+          <table>
+            <tr>
+              <td>
+                <%= f.label 'kategoria' %>
+                <%= f.collection_check_boxes(:eventtype_ids, Eventtype.all, :id, :name) do |b|
+                    b.label { b.check_box + " " + b.text }
+                  end %><br />
+              </td>
+              <td>
+                <%= f.label 'typ' %>
+                <%= f.collection_radio_buttons(:is_paid, [[true, 'płatne'] ,[false, 'darmowe']], :first, :last) do |b|
+                    b.label { b.radio_button + "     " + b.text }
+                  end %><br />
+              </td>
+            </tr>
+          </table>
+          <%= f.submit "Dodaj wydarzenie" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-sm-4 col-sm-offset-8" id="right_side">
+      <div class="content">
+        <h4 class="lead">Jaką kategorię wybrać?</h4>
+        <table class="table">
+          <thead>
+            <th>Kategoria</th>
+            <th>Rodzaje wydarzeń</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>dla dzieci</td>
+              <td>wszystkie wydarzenia, na które możesz zabrać dzieci :)</td>
+            </tr>
+            <tr>
+              <td>muzyczne</td>
+              <td>koncerty, słuchowiska, spotkania muzyczne itp.</td>
+            </tr>
+            <tr>
+              <td>filmowe</td>
+              <td>kina, kina pod chmurką, spotkania filmowe itp.</td>
+            </tr>
+            <tr>
+              <td>teatralne</td>
+              <td>teatr, kabaret, standup, impro, inne podobne występy, spotkania teatralne itp.</td>
+            </tr>
+            <tr>
+              <td>kulturalne - inne</td>
+              <td>wystawy, wernisaże, spotkania literackie itp.</td>
+            </tr>
+            <tr>
+              <td>naukowe i rozwojowe</td>
+              <td>warsztaty, konferencje, wykłady, spotkania, na których można pomyśleć, rozwinąć się, zdobyć nową wiedzę</td>
+            </tr>
+            <tr>
+              <td>sportowe i rekreacyjne</td>
+              <td>biegi, zawody sportowe, spotkania sportowe i/lub rekreacyjne</td>
+            </tr>
+            <tr>
+              <td>turystyczne</td>
+              <td>zwiedzanie, spacery z przewodnikami, spotkania podróżnicze, wycieczki</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Można wybrać kilka kategorii</p>
+        <p>Dodając wydarzenie, akceptujesz regulamin serwisu</p>
+        <p>Można dodawać wydarzenia wyłącznie publiczne. Wszystkie wydarzenia są widoczne dla każdego odwiedzającego portal
+        i nie bierzemy odpowiedzialności za publikację wydarzeń prywatnych bez zezwoleń związanych z organizację imprez masowych. </p>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAP -->
+
+<script>
+$('input.datepicker').datepicker({
+  dateFormat: 'yy-mm-dd',
+  todayBtn: "linked",
+  language: "pl",
+  todayHighlight: true
+});
+$('input.datepicker2').datepicker({
+  dateFormat: 'yy-mm-dd',
+  todayBtn: "linked",
+  language: "pl",
+  todayHighlight: true
+});
+
+$("input.datetimepicker").on("dp.change", function (e) {
+    $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+});
+  $("#datetimepicker2").on("dp.change", function (e) {
+      $('#datetimepicker').data("DateTimePicker").maxDate(e.date);
+  });
+</script>

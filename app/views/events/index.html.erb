@@ -1,0 +1,56 @@
+<!--Events#index app/views/events/index.html.erb-->
+<!-- MIDDLE -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2" id="left_side">
+      <ul class="list-group">
+        <li class="list-group-item"><%= link_to "Dodaj wydarzenie", new_event_path, class: 'navigationlink' %></li>
+        <li class="list-group-item"><%= link_to "Twoje wydarzenia", events_path, class: 'navigationlink' %></li>
+        <li class="list-group-item"><%= link_to "Twój kalendarz", "#", class: 'navigationlink' %></li>
+        <li class="list-group-item"><%= link_to "Twój profil", "#", class: 'navigationlink' %></li>
+      </ul>
+    </div>
+
+    <div class="col-sm-10 col-sm-offset-2" id="center_side">
+      <div class="row">
+        <div class="container">
+          <div class="event_list_title">
+            <h3 class="lead">Wydarzenia dodane przez Ciebie</h3>
+          </div>
+          <table class="table table-striped myeventstable">
+            <thead>
+              <th><%= sortable "name", "Nazwa" %></th>
+              <th><%= sortable "start_date", "Data" %></th>
+              <th><%= sortable "start_time", "Godzina" %></th>
+              <th><%= sortable "address", "Lokalizacja" %></th>
+              <th><%= sortable "city", "Miasto" %></th>
+              <th><%= sortable "is_paid", "Typ" %></th>
+              <th>Akcje</th>
+              <th></th>
+            </thead>
+            <tbody>
+              <% @events.each do |e| %>
+                <% if e.user_id == current_user.id %>
+                  <tr>
+                    <td><%= e.name %></td>
+                    <td><%= e.start_date %></td>
+                    <td><%= e.start_time %></td>
+                    <td><%= e.address %></td>
+                    <td><%= e.city %></td>
+                    <td><%= e.is_paid ? "płatne" : "bezpłatne" %></td>
+                    <% if !e.start_date.past? || e.start_date == nil %>
+                      <td><%= link_to "Edytuj", edit_event_path(e), class: "btn btn-warning btn-xs editbutton" %></td>
+                      <td><%= link_to "Usuń", event_path(e), method: :delete, class: "btn btn-danger btn-xs"  %></td>
+                    <% else %>
+                      <td><p class="btn btn-success btn-xs">Archiwum</td>
+                      <td></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

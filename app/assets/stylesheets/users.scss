@@ -1,0 +1,28 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// ---- LEFT NAVIGATION ----
+.list-group {
+  margin-top: 25px;
+}
+
+.list-group-item {
+  margin-bottom: 25px;
+  background-color: #ff9900;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.navigationlink {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.navigationlink:hover {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #333;
+}

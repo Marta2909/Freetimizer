@@ -1,0 +1,190 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
+// ----- TOPBAR AND FOOTER -----
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar-brand {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+#topbar {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+#footer_right {
+  padding-right: 15px;
+}
+
+#greet {
+  margin-top: -10px;
+  padding-top: -10px;
+}
+
+// ----- LEFT SIDE ------------
+#left_side {
+  background-color: #ff9900;
+  top: 81px;
+  bottom: 80px;
+  margin-left: 15px;
+  margin-right: 0;
+  position: fixed;
+  z-index: 2;
+}
+
+#left_side2 {
+  background-color: #ff9900;
+  top: 151px;
+  bottom: 80px;
+  margin-right: 0;
+  z-index: 2;
+}
+
+// ----- CENTER SIDE ---------
+
+#center_side {
+  padding-left: 35px;
+  padding-right: 0;
+  top: 81px;
+  bottom: 70px;
+  background-color: #fff;
+}
+
+// ----- RIGHT SIDE - MAP -----
+#right_side {
+  top: 81px;
+  bottom: 80px;
+  position: fixed;
+  z-index: 100;
+  padding-left: 15px;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+//----- MIDLLE ---
+#middle_side {
+  top: 81px;
+  bottom: 82px;
+  z-index: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.pre-scrollable {
+  top: 81px;
+  bottom: 80px;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.card {
+  border: solid 1px #ccc;
+  margin-bottom: 20px;
+}
+
+.event_list_main {
+  margin-top: 151px;
+  bottom: 80px;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+}
+.event_list_title {
+  position: fixed;
+  overflow: visible;
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  z-index: 100;
+}
+
+label {
+  width: 100%;
+  font-weight: bold;
+}
+
+.lead2 {
+  margin-top: 430px;
+}
+
+input[type="text"], textarea {
+  width: 100%;
+  font-weight: bold;
+  font-size: 18px;
+  border: 0.5px solid #ccc;
+  color: #444;
+}
+
+#event_is_paid_true, #event_is_paid_false  {
+  width: 10%;
+  display: inline-table;
+  align-self: center;
+}
+
+#event_start_time_4i, #event_start_time_5i, #event_end_time_4i, #event_end_time_5i {
+  background-color: #fff;
+}
+
+.dateinput {
+  padding-left: 0px;
+  width: 30%;
+}
+
+.timeinput {
+  padding-top: 25px;
+}
+
+select {
+  border: 0.5px solid #ccc;
+  font-size: 19px;
+  color: #444;
+}
+
+textarea {
+  max-width: 100%;
+}
+
+.page-header {
+  position: fixed;
+}
+
+.newform {
+  position: relative;
+  top: 81px;
+  margin-bottom: 120px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.minimap {
+  height: 40%;
+  max-height: 40%;
+  position: fixed;
+}
+
+.myeventstable {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}

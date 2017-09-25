@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Freetimizer</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- MAP --
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+    </style> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  </head>
+
+  <body>
+
+    <!-- HEADER TOPBAR -->
+    <header class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid" id="topbar">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <%= link_to(image_tag("logo.png", size: "310x55", alt: "Freetimizer"), root_path, class: "navbar-brand") %>
+
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li id="greet"><h3><span class="label label-warning">Hej <%= current_user.first_name%>! <i class="fa fa-smile-o" aria-hidden="true"></i></span></h3></li>
+              <li><%= link_to "Twoje konto", new_event_path %></li>
+              <li><%= link_to "Wyloguj się", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li id="greet"><h3><span class="label label-warning"><%= link_to "Dodaj wydarzenie", new_event_path %></span></h3></li>
+              <li><%= link_to "Zarejestruj się", new_user_registration_path %></li>
+              <li><%= link_to "Zaloguj się", new_user_session_path %></li>
+            <% end %>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </header>
+
+    <!-- MIDDLE -->
+      <div class="pre-scrollable">
+        <%= yield %>
+      </div>
+
+
+    <!-- FOOTER -->
+    <footer class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container-fluid" id="topbar">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">social, copyright</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right" id="footer_right">
+            <li><a href="#">O Freetimizer</a></li>
+            <li><a href="#">Jak korzystać?</a></li>
+            <li><a href="#">Regulamin</a></li>
+            <li><a href="#">Polityka prywatności</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </footer>
+
+  </body>
+</html>
